@@ -38,5 +38,7 @@
     "tailwindcss": "^3.0.23"
   },
   "type": "module",
-  "dependencies": {}
+  "dependencies": {
+    "ethers": "^5.6.2"
+  }
 }
