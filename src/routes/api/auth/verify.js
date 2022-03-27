@@ -1,5 +1,4 @@
 import { SiweMessage, ErrorTypes } from 'siwe';
-import { authenticatedAddress } from '$lib/stores/auth';
 
 export async function post({ locals, request }) {
   const body = await request.json()
@@ -51,8 +50,6 @@ export async function post({ locals, request }) {
       siwe: null,
       nonce: null,
     }
-
-    authenticatedAddress.set('')
 
     console.error(e);
 
