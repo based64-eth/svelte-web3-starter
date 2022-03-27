@@ -1,18 +1,41 @@
 import ethereumProvider from "$lib/web3/providers/ethereumProvider"
+import multicallProvider from "$lib/web3/providers/multicallProvider"
+
+const provider = multicallProvider(ethereumProvider)
 
 export default async (address) => {
   const name = await ethereumProvider.lookupAddress(address)
-  const resolver = await ethereumProvider.getResolver(name)
+  const resolver = await provider.getResolver(name)
+
+  const [
+    avatar,
+    email,
+    url,
+    discord,
+    github,
+    reddit,
+    telegram,
+    twitter
+  ] = await Promise.all([
+    provider.getAvatar(address),
+    resolver.getText('email'),
+    resolver.getText('url'),
+    resolver.getText('com.discord'),
+    resolver.getText('com.github'),
+    resolver.getText('com.reddit'),
+    resolver.getText('com.telegram'),
+    resolver.getText('com.twitter'),
+  ])
   
   return {
     name,
-    avatar: await resolver.getAvatar(),
-    email: await resolver.getText('email'),
-    url: await resolver.getText('url'),
-    discord: await resolver.getText('com.discord'),
-    github: await resolver.getText('com.github'),
-    reddit: await resolver.getText('com.reddit'),
-    telegram: await resolver.getText('com.telegram'),
-    twitter: await resolver.getText('com.twitter'),
+    avatar,
+    email,
+    url,
+    discord,
+    github,
+    reddit,
+    telegram,
+    twitter,
   }
 }
