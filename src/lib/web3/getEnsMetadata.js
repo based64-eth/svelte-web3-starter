@@ -1,10 +1,10 @@
-import ethereumProvider from "$lib/web3/providers/ethereumProvider"
+import rpcProvider from "$lib/web3/providers/rpcProvider"
 import multicallProvider from "$lib/web3/providers/multicallProvider"
 
-const provider = multicallProvider(ethereumProvider)
+const provider = multicallProvider(rpcProvider.ETHEREUM)
 
 export default async (address) => {
-  const name = await ethereumProvider.lookupAddress(address)
+  const name = await provider.lookupAddress(address)
   const resolver = await provider.getResolver(name)
 
   const [
