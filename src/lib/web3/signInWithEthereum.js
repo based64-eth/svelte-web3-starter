@@ -1,6 +1,6 @@
-import connectWallet from "$lib/services/web3/connectWallet";
-import createSiweMessage from "$lib/services/web3/createSiweMessage";
-import walletProvider from "$lib/services/web3/walletProvider";
+import connectWallet from "$lib/web3/connectWallet"
+import createSiweMessage from "$lib/web3/createSiweMessage"
+import walletProvider from "$lib/web3/providers/walletProvider"
 
 export default async (
   statement = 'Sign in with Ethereum.', 

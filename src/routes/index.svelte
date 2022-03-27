@@ -8,8 +8,8 @@
 		selectedAddress,
 		selectedChainId
 	} from '$lib/stores/web3';
-  import connectWallet from '$lib/services/web3/connectWallet';
-  import signInWithEthereum from '$lib/services/web3/signInWithEthereum';
+  import connectWallet from '$lib/web3/connectWallet';
+  import signInWithEthereum from '$lib/web3/signInWithEthereum';
 
   const onClickSignIn = async () => {
     try {

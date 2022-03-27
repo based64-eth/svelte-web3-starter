@@ -1,4 +1,4 @@
-import walletProvider from "$lib/services/web3/walletProvider";
+import walletProvider from "$lib/web3/providers/walletProvider"
 
 export default () => {
   walletProvider

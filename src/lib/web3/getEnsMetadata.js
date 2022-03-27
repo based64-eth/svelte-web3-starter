@@ -1,4 +1,4 @@
-import ethereumProvider from "$lib/services/web3/ethereumProvider"
+import ethereumProvider from "$lib/web3/providers/ethereumProvider"
 
 export default async (address) => {
   const name = await ethereumProvider.lookupAddress(address)
