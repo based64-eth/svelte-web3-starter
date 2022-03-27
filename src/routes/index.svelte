@@ -1,4 +1,5 @@
 <script>
+  import chains from '$lib/chains.config'
   import { session } from '$app/stores'
   import { isAuthenticated, authenticatedAddress } from '$lib/stores/auth'
 	import {
@@ -10,6 +11,8 @@
 	} from '$lib/stores/web3';
   import connectWallet from '$lib/web3/connectWallet';
   import signInWithEthereum from '$lib/web3/signInWithEthereum';
+  import switchToChain from '$lib/web3/switchToChain';
+  import ChainGuard from '$lib/components/ChainGuard/ChainGuard.svelte';
 
   const onClickSignIn = async () => {
     try {
@@ -70,6 +73,18 @@
         >
           Sign Out
         </button>
+        <div class="mt-1">
+          <ChainGuard currentChainId={$selectedChainId} requiredChainId="{chains.polygon.chainId}">
+            <div slot="content">
+              You are on Polygon Mainnet.
+            </div>
+            <div slot="guard">
+              <button on:click="{() => {switchToChain(chains.polygon.chainId)}}" class="py-2 px-4 rounded-sm text-white bg-zinc-800">
+              Switch to Polygon Mainnet
+              </button>
+            </div>
+          </ChainGuard>
+        </div>
 			</div>
 		{:else}
 			<div>Your browser does not support Web3.</div>

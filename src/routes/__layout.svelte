@@ -13,10 +13,10 @@
     if (!provider) return;
 
     const accounts = await provider.request({method: 'eth_accounts'})
-    const chainId = await provider.request({method: 'eth_chainId'})
+    const chainIdHex = await provider.request({method: 'eth_chainId'})
 
     updateSelectedAddress(accounts)
-    updateChainId(chainId)
+    updateChainId(chainIdHex)
     registerWalletListeners(provider);
   })
 
@@ -24,8 +24,8 @@
     selectedAddress.set(accounts.length ? accounts[0] : null)
   }
 
-  const updateChainId = (chainId) => {
-    selectedChainId.set(chainId)
+  const updateChainId = (chainIdHex) => {
+    selectedChainId.set(parseInt(chainIdHex))
   }
 
   const registerWalletListeners = (provider) => {
